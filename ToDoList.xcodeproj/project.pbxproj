@@ -38,6 +38,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2277F0D42BDC125F00DDA3D6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		229C58012BDABF8800D9C42A = {
 			isa = PBXGroup;
 			children = (
@@ -57,6 +64,7 @@
 		229C580C2BDABF8800D9C42A /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
+				2277F0D42BDC125F00DDA3D6 /* ViewModel */,
 				229C581B2BDAC4FA00D9C42A /* Views */,
 				229C580D2BDABF8800D9C42A /* ToDoListApp.swift */,
 				229C580F2BDABF8800D9C42A /* ContentView.swift */,
