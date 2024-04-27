@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct itemModel: Identifiable {
+    let id: String = UUID().uuidString
+    let title: String
+    let isComplete: Bool
+}
