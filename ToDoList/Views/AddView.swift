@@ -41,8 +41,16 @@ struct AddView: View {
         
     }
     func saveButtonPressed(){
-        listViewModel.addItem(title: textFieldText)
-        presentationMode.wrappedValue.dismiss()
+        if textIsAppropriate() == true {
+            listViewModel.addItem(title: textFieldText)
+            presentationMode.wrappedValue.dismiss()
+        }
+    }
+    func textIsAppropriate() -> Bool {
+        if textFieldText.count < 3 {
+            return false
+        }
+        return true
     }
 }
 
