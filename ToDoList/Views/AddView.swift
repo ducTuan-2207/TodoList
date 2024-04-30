@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AddView: View {
     
+    @EnvironmentObject var listViewModel: ListViewModel
     @State var textFieldText: String = ""
     
     var body: some View {
@@ -21,7 +22,7 @@ struct AddView: View {
                 .cornerRadius(10)
                 
                 Button {
-                    
+                saveButtonPressed()
                 } label: {
                     Text("Save".uppercased())
                         .foregroundColor(.white)
@@ -39,6 +40,9 @@ struct AddView: View {
         .navigationTitle("Add the item 😀")
         
     }
+    func saveButtonPressed(){
+        listViewModel.addItem(title: textFieldText)
+    }
 }
 
 struct AddView_Previews: PreviewProvider {
@@ -46,5 +50,6 @@ struct AddView_Previews: PreviewProvider {
         NavigationView {
             AddView()
         }
+        .environmentObject(ListViewModel())
     }
 }

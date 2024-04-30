@@ -9,19 +9,21 @@ import SwiftUI
 
 struct ListView: View {
     
-    @State var items: [itemModel] = [
-        itemModel(title: "This is the firts item", isComplete: false),
-        itemModel(title: "This is the 2 item", isComplete: true),
-        itemModel(title: "This is the 3 item", isComplete: false)
-    ]
+    @EnvironmentObject var listViewModel: ListViewModel
+    
+//    @State var items: [itemModel] = [
+//        itemModel(title: "This is the firts item", isComplete: false),
+//        itemModel(title: "This is the 2 item", isComplete: true),
+//        itemModel(title: "This is the 3 item", isComplete: false)
+//    ]
     
     var body: some View {
         List{
-            ForEach(items) { item in
+            ForEach(listViewModel.items) { item in
                 ListRowView(item: item)
             }
-            .onDelete(perform: deleteItem)
-            .onMove(perform: moveItem)
+            .onDelete(perform: listViewModel.deleteItem)
+            .onMove(perform: listViewModel.moveItem)
         }
         .listStyle(PlainListStyle())
         .navigationTitle("Todo List")
@@ -30,12 +32,12 @@ struct ListView: View {
             NavigationLink("Add", destination: AddView())
         )
     }
-    func deleteItem(indexSet: IndexSet) {
-        items.remove(atOffsets: indexSet)
-    }
-    func moveItem(from: IndexSet, to: Int){
-        items.move(fromOffsets: from, toOffset: to)
-    }
+//    func deleteItem(indexSet: IndexSet) {
+//        items.remove(atOffsets: indexSet)
+//    }
+//    func moveItem(from: IndexSet, to: Int){
+//        items.move(fromOffsets: from, toOffset: to)
+//    }
 }
 
 struct ListView_Previews: PreviewProvider {
@@ -43,6 +45,7 @@ struct ListView_Previews: PreviewProvider {
         NavigationView {
             ListView()
         }
+        .environmentObject(ListViewModel())
     }
 }
 
