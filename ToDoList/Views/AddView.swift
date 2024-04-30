@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddView: View {
-    
+    @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var listViewModel: ListViewModel
     @State var textFieldText: String = ""
     
@@ -42,6 +42,7 @@ struct AddView: View {
     }
     func saveButtonPressed(){
         listViewModel.addItem(title: textFieldText)
+        presentationMode.wrappedValue.dismiss()
     }
 }
 
