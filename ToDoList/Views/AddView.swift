@@ -11,6 +11,8 @@ struct AddView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var listViewModel: ListViewModel
     @State var textFieldText: String = ""
+    @State var alertTitle: String = ""
+    @State var showAlert: Bool = false
     
     var body: some View {
         ScrollView {
@@ -38,7 +40,7 @@ struct AddView: View {
                 
         }
         .navigationTitle("Add the item 😀")
-        
+        .alert(isPresented: $showAlert, content: getAlert)
     }
     func saveButtonPressed(){
         if textIsAppropriate() == true {
@@ -48,9 +50,14 @@ struct AddView: View {
     }
     func textIsAppropriate() -> Bool {
         if textFieldText.count < 3 {
+            alertTitle = "Your new todo item must be at leats 3 characters long!!!"
+            showAlert.toggle()
             return false
         }
         return true
+    }
+    func getAlert() -> Alert {
+        return Alert(title: Text(alertTitle))
     }
 }
 
